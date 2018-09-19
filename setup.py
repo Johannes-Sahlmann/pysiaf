@@ -131,6 +131,8 @@ setup(
                                 'pre_delivery_data/*/*.*',
                                 'source_data/*/*.txt',
                                 'source_data/*.txt',
+                                'source_data/*/*/*.*.',
+                                'source_data/*/*/*/*/*.*',
                                 'tests/test_data/*/*/*/*.fits',
                                 'tests/test_data/*/*/*/*.txt',
                                 ]},

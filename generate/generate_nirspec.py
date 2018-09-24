@@ -918,7 +918,7 @@ aperture_collection = pysiaf.ApertureCollection(aperture_dict)
 
 
 emulate_delivery = True
-# emulate_delivery = False
+emulate_delivery = False
 
 if emulate_delivery:
     pre_delivery_dir = os.path.join(JWST_DELIVERY_DATA_ROOT, instrument)
@@ -951,6 +951,7 @@ if emulate_delivery:
 else:
 
 
+    1/0
     # filename = pysiaf.iando.write.write_jwst_siaf(aperture_collection, basepath=test_dir, label='pysiaf')
     [filename] = pysiaf.iando.write.write_jwst_siaf(aperture_collection, basepath=test_dir, file_format=['xml'])
     print('SIAFXML written in {}'.format(filename))
@@ -959,8 +960,14 @@ else:
     # ref_siaf = pysiaf.Siaf(instrument, os.path.join(test_dir , '{}'.format('NIRISS_SIAF_2017-10-18.xml')))
     ref_siaf = pysiaf.Siaf(instrument)
     # ref_siaf = pysiaf.Siaf(instrument, os.path.join(test_dir, 'NIRSpec_SIAF_2018-04-13.xml'))
-    # new_siaf = pysiaf.Siaf(instrument, os.path.join(test_dir, 'NIRSpec_SIAF_2018-04-13.xml'))
-    new_siaf = pysiaf.Siaf(instrument, filename)
+    new_siaf = pysiaf.Siaf(instrument, os.path.join(test_dir, 'NIRSpec_SIAF_2018-04-13.xml'))
+    # new_siaf = pysiaf.Siaf(instrument, filename)
+
+    if 1:
+        ref_siaf = pysiaf.Siaf(instrument)
+        new_siaf = pysiaf.Siaf(instrument, os.path.join(test_dir, 'NIRSpec_SIAF_2018-04-13.xml'))
+        compare.compare_siaf(new_siaf, reference_siaf_input=ref_siaf, fractional_tolerance=1e-6, tags={'reference': pysiaf.JWST_PRD_VERSION, 'comparison': 'NIRSpec_SIAF_2018-04-13.xml'})
+
 
     report_dir = os.path.join(REPORTS_ROOT, instrument)
     comparison_aperture_names = [AperName for AperName in aperture_name_list if 'MIMF' in AperName]

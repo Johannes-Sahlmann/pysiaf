@@ -123,7 +123,7 @@ setup(
         'scipy>=0.17',
         'openpyxl>=2.4'
     ],
-    tests_require=['pytest'],
+    tests_require=['pytest<4.0'],
     packages=find_packages(),
     package_data={PACKAGENAME: ['prd_data/HST/*/*.dat',
                                 'prd_data/JWST/*/*/*/*.xlsx',
